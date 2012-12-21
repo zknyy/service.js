@@ -28,3 +28,10 @@ vendor/sinon:
   squashed: true
   type: git
   url: git@github.com:weejot/Sinon.JS.git
+vendor/sinon-chai: 
+  branch: master
+  remote: master/braid/vendor/sinon-chai
+  revision: 6e8b56a7bc1952680ea2c3391634655677b73a0d
+  squashed: true
+  type: git
+  url: git://github.com/domenic/sinon-chai.git
