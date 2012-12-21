@@ -29,6 +29,7 @@ require({
     chai.use(sinonChai);
 
     require([
+        "bdd/js/ArgumentsTest",
         "bdd/js/ContainerTest",
         "bdd/js/Loader/ObjectTest"
     ], function () {
