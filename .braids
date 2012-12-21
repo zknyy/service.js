@@ -20,3 +20,11 @@ vendor/modular:
   squashed: true
   type: git
   url: git://github.com/asmblah/modular.git
+vendor/sinon: 
+  branch: master
+  lock: c017e3f8d4b0497f6dd0372f7aa23c2b60b369bc
+  remote: master/braid/vendor/sinon
+  revision: c017e3f8d4b0497f6dd0372f7aa23c2b60b369bc
+  squashed: true
+  type: git
+  url: git@github.com:weejot/Sinon.JS.git
