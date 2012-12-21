@@ -17,7 +17,7 @@ define([
 ) {
     "use strict";
 
-    var hasOwn = {}.hasOwn;
+    var hasOwn = {}.hasOwnProperty;
 
     /**
      * Funnel
