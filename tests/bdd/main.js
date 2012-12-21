@@ -16,10 +16,22 @@ require({
         "vendor": "/../../vendor"
     }
 }, [
-    "bdd/js/ContainerTest",
-    "bdd/js/Loader/ObjectTest"
-], function () {
+    "vendor/chai/chai",
+    "vendor/sinon-chai/lib/sinon-chai",
+    "require"
+], function (
+    chai,
+    sinonChai,
+    require
+) {
     "use strict";
 
-    mocha.run();
+    chai.use(sinonChai);
+
+    require([
+        "bdd/js/ContainerTest",
+        "bdd/js/Loader/ObjectTest"
+    ], function () {
+        mocha.run();
+    });
 });
