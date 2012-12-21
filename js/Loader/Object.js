@@ -60,7 +60,7 @@ define([
             });
 
             util.each(parameters, function (value, name) {
-                var match = typeof value !== "number" ? value.match(/^%([^%]+)%$/) : "";
+                var match = typeof value !== "number" ? value.match(/%([^%]+)%/) : "";
 
                 if (match) {
                     throw new Exception("ObjectLoader.load() :: Parameter with name '" + name + "' references undefined parameter '" + match[1]);

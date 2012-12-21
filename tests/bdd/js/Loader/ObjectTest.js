@@ -12,12 +12,14 @@ define([
     "vendor/chai/chai",
     "vendor/modular/modular",
     "js/Container",
+    "js/Exception",
     "js/Transport/Module",
     "js/Loader/Object"
 ], function (
     chai,
     modular,
     Container,
+    Exception,
     ModuleTransport,
     ObjectLoader
 ) {
@@ -114,6 +116,80 @@ define([
                         expect(interpreter).to.be.an.instanceOf(CoolLangInterpreter);
                         done();
                     });
+            });
+        });
+
+        describe("when given an example with a parameter referencing an undefined parameter name", function () {
+            var CoolLangInterpreter,
+                CoolLangVM,
+                majorVersion,
+                minorVersion,
+                revision;
+
+            beforeEach(function () {
+                majorVersion = 5;
+                minorVersion = 4;
+                revision = 7125;
+
+                CoolLangInterpreter = function () {};
+                CoolLangVM = function () {};
+
+                loader.define("Interpreter/CoolLang", function () {
+                    return CoolLangInterpreter;
+                });
+
+                loader.define("VM/CoolLang", function () {
+                    return CoolLangVM;
+                });
+
+                object = {
+                    "parameters": {
+                        "name": "%noidea%"
+                    }
+                };
+            });
+
+            it("should throw an Exception", function () {
+                expect(function () {
+                    objectLoader.load(object);
+                }).to.throw(Exception);
+            });
+        });
+
+        describe("when given an example with a parameter referencing an undefined embedded parameter name", function () {
+            var CoolLangInterpreter,
+                CoolLangVM,
+                majorVersion,
+                minorVersion,
+                revision;
+
+            beforeEach(function () {
+                majorVersion = 5;
+                minorVersion = 4;
+                revision = 7125;
+
+                CoolLangInterpreter = function () {};
+                CoolLangVM = function () {};
+
+                loader.define("Interpreter/CoolLang", function () {
+                    return CoolLangInterpreter;
+                });
+
+                loader.define("VM/CoolLang", function () {
+                    return CoolLangVM;
+                });
+
+                object = {
+                    "parameters": {
+                        "name": "all the gear, but %noidea%"
+                    }
+                };
+            });
+
+            it("should throw an Exception", function () {
+                expect(function () {
+                    objectLoader.load(object);
+                }).to.throw(Exception);
             });
         });
 
