@@ -54,7 +54,7 @@ define([
                 throw new Exception("Container.set() :: Service already defined with name '" + name + "'");
             }
 
-            this.services[name] = new Service(name)
+            this.services[name] = new Service(name);
             this.services[name].define(new StaticEvaluator(value));
         },
 
