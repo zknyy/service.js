@@ -19,6 +19,7 @@ define([
     "use strict";
 
     function Service(name) {
+        this.evaluator = null;
         this.loaded = false;
         this.name = name;
         this.value = null;
