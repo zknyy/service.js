@@ -20,7 +20,7 @@ define([
         this.parent = parent;
     }
 
-    Exception.prototype = util.inheritFrom(Error);
+    util.inherit(Exception).from(Error);
 
     util.extend(Exception.prototype, {
         getMessage: function () {

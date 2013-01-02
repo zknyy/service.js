@@ -16,11 +16,13 @@ define([
     "use strict";
 
     var util = modular.util.extend({}, modular.util, {
-        inheritFrom: function (Class) {
-            var object = Object.create(Class.prototype);
-
-            object.constructor = Class;
-            return object;
+        inherit: function (To) {
+            return {
+                from: function (From) {
+                    To.prototype = Object.create(From.prototype);
+                    To.prototype.constructor = To;
+                }
+            };
         },
 
         regex: {

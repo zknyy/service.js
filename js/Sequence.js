@@ -58,7 +58,7 @@ define([
         doSequence(this, list || [], callback, 0);
     }
 
-    Sequence.prototype = Object.create(Promise.prototype);
+    util.inherit(Sequence).from(Promise);
 
     return Sequence;
 });

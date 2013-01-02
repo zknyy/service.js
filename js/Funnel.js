@@ -70,7 +70,7 @@ define([
         done = true;
     }
 
-    Funnel.prototype = Object.create(Promise.prototype);
+    util.inherit(Funnel).from(Promise);
 
     return Funnel;
 });
