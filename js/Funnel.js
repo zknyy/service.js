@@ -25,19 +25,22 @@ define([
      *
      * @class js/Funnel
      * @augments js/Promise
-     * @param {Object} context
      * @param {Array} items
-     * @param {Function} callback
+     * @param {Function} [callback=function () {}]
+     * @param {Object} [context=null]
      */
-    function Funnel(context, items, callback) {
-        var funnel = this,
-            pending = 0,
-            done = false,
+    function Funnel(items, callback, context) {
+        var done = false,
+            funnel = this,
+            isArray = util.isArray(items),
             key,
+            pending = 0,
             promise,
-            results = util.isArray(items) ? [] : {};
+            results = isArray ? [] : {};
 
-        Promise.call(this, context);
+        Promise.call(this, context || null);
+
+        callback = callback || function () { return this; };
 
         for (key in items) {
             if (hasOwn.call(items, key)) {
@@ -53,7 +56,7 @@ define([
                                 results[key] = value;
                                 pending -= 1;
                                 if (pending === 0 && done) {
-                                    funnel.resolve();
+                                    funnel.resolve(results);
                                 }
                             })
                             .fail(function () {

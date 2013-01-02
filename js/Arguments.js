@@ -31,13 +31,13 @@ define([
             var args = this,
                 values = args.values;
 
-            return new Funnel(args, values, function (value) {
+            return new Funnel(values, function (value) {
                 if (value && (value instanceof Service)) {
                     return value.get();
                 }
 
                 return new Promise().resolve(value);
-            });
+            }, args);
         }
     });
 

@@ -12,11 +12,15 @@
 define([
     "js/util",
     "js/Exception",
+    "js/Funnel",
+    "js/Promise",
     "js/Service",
     "js/Evaluator/Static"
 ], function (
     util,
     Exception,
+    Funnel,
+    Promise,
     Service,
     StaticEvaluator
 ) {
@@ -34,12 +38,27 @@ define([
             this.services[service.getName()] = service;
         },
 
-        get: function (name) {
-            if (!hasOwn.call(this.services, name)) {
-                throw new Exception("Container.get() :: Service with name '" + name + "' not found");
-            }
+        get: function (/* name1, name2, ... */) {
+            var servicePromises = [],
+                names = arguments,
+                promise = new Promise(),
+                services = this.services;
 
-            return this.services[name].get();
+            util.each(names, function (name) {
+                if (!hasOwn.call(services, name)) {
+                    throw new Exception("Container.get() :: Service with name '" + name + "' not found");
+                }
+
+                servicePromises.push(services[name].get());
+            });
+
+            new Funnel(servicePromises)
+                .done(function (services) {
+                    promise.resolve.apply(promise, services);
+                })
+                .fail(promise);
+
+            return promise;
         },
 
         getParameter: function (name) {

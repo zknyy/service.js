@@ -56,6 +56,40 @@ define([
                     }).to.throw(Exception);
                 });
             });
+
+            describe("when two names are specified, 'parser' and 'interpreter'", function () {
+                var name1,
+                    name2;
+
+                beforeEach(function () {
+                    name1 = "parser";
+                    name2 = "interpreter";
+                });
+
+                it("should return the specified first service when both exist", function (done) {
+                    expectedService = {};
+                    container.set(name1, expectedService);
+                    container.set(name2, {});
+
+                    container.get(name1, name2)
+                        .done(function (service1, service2) {
+                            expect(service1).to.equal(expectedService);
+                            done();
+                        });
+                });
+
+                it("should return the specified second service when both exist", function (done) {
+                    expectedService = {};
+                    container.set(name1, {});
+                    container.set(name2, expectedService);
+
+                    container.get(name1, name2)
+                        .done(function (service1, service2) {
+                            expect(service2).to.equal(expectedService);
+                            done();
+                        });
+                });
+            });
         });
 
         describe("getParameter()", function () {
