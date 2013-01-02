@@ -11,13 +11,17 @@
 /*global define */
 define([
     "js/util",
+    "modular",
     "js/Container",
     "js/Loader/JSON",
+    "js/Transport/Module",
     "js/Loader/Object"
 ], function (
     util,
+    modular,
     Container,
     JSONLoader,
+    ModuleTransport,
     ObjectLoader
 ) {
     "use strict";
@@ -27,9 +31,10 @@ define([
     }
 
     util.extend(ServiceJS.prototype, {
-        create: function () {
+        create: function (loader) {
             var container = new Container(),
-                objectLoader = new ObjectLoader(container),
+                moduleTransport = new ModuleTransport(loader || modular),
+                objectLoader = new ObjectLoader(container, moduleTransport),
                 jsonLoader = new JSONLoader(objectLoader);
 
             return {
