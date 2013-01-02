@@ -112,39 +112,6 @@ define([
                 container.define(service);
             });
 
-            /*new Sequence(loader, serviceNames, function (name) {
-                var classPath = attributes[CLASS_PATH_NAME],
-                    promise = new Promise();
-
-                if (!classPath) {
-                    throw new Exception("ObjectLoader.load() :: Service with name '" + name + "' needs a class attribute");
-                }
-
-                moduleTransport.load(classPath)
-                    .done(function (Class) {
-                        promise.resolve();
-                    })
-                    .fail(function () {
-                        throw new Exception("ObjectLoader.load() :: Class with path '" + classPath + "' failed to load for service with name '" + name + "'");
-                    });
-
-                return promise;
-            })
-                .done(function () {
-
-                    promise.resolve();
-                });*/
-
-            /*util.each(object[SERVICES_NAME], function (name, attributes) {
-                var classPath = attributes[CLASS_PATH_NAME];
-
-                if (!classPath) {
-                    throw new Exception("ObjectLoader.load() :: Service with name '" + name + "' needs a class attribute");
-                }
-
-                container.set(name, value);
-            });*/
-
             return promise;
         }
     });
