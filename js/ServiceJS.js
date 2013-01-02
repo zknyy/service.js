@@ -13,6 +13,7 @@ define([
     "js/util",
     "modular",
     "js/Container",
+    "js/Funnel",
     "js/Loader/JSON",
     "js/Transport/Module",
     "js/Loader/Object"
@@ -20,6 +21,7 @@ define([
     util,
     modular,
     Container,
+    Funnel,
     JSONLoader,
     ModuleTransport,
     ObjectLoader
@@ -42,6 +44,10 @@ define([
                 objectLoader: objectLoader,
                 jsonLoader: jsonLoader
             };
+        },
+
+        funnel: function (items, callback, context) {
+            return new Funnel(items, callback, context);
         }
     });
 
