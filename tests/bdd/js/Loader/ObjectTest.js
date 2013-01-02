@@ -221,7 +221,7 @@ define([
                     "services": {
                         "vm": {
                             "class": "VM/CoolLang",
-                            "arguments": "@interpreter"
+                            "arguments": ["@interpreter"]
                         },
 
                         "interpreter": {
@@ -237,6 +237,14 @@ define([
                 container.get("vm")
                     .done(function (vm) {
                         expect(vm).to.be.an.instanceOf(CoolLangVM);
+                        done();
+                    });
+            });
+
+            it("should add the service 'interpreter' to the Container as an instance of the correct class", function (done) {
+                container.get("interpreter")
+                    .done(function (interpreter) {
+                        expect(interpreter).to.be.an.instanceOf(CoolLangInterpreter);
                         done();
                     });
             });

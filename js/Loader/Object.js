@@ -105,8 +105,9 @@ define([
 
                 if (!services[name]) {
                     services[name] = new Service(name);
-                    services[name].define(new ClassEvaluator(moduleTransport, classPath, new Arguments(values)));
                 }
+
+                services[name].define(new ClassEvaluator(moduleTransport, classPath, new Arguments(values)));
             });
 
             util.each(services, function (service) {
