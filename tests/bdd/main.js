@@ -1,10 +1,11 @@
 /**
  * ServiceJS library v0.0.1
- * http://?.com/
+ * https://github.com/weejot/service.js
  *
- * Copyright 2012 ?.com
- * Released under the MIT license
- * http://?.com/license
+ * Copyright 2012 Weejot (weejot.com)
+ *
+ * Released under the NCSA Open Source license
+ * https://github.com/weejot/service.js/raw/master/NCSA-LICENSE.txt
  */
 
 /*global require */
